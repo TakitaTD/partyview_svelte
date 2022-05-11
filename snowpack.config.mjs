@@ -6,6 +6,7 @@ export default {
   plugins: [
     /* ... */
     '@snowpack/plugin-svelte',
+    'svelte-preprocess-cssmodules'
   ],
   routes: [
     /* Enable an SPA Fallback in development: */

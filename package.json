@@ -20,6 +20,7 @@
     "routifyDir": "src/.routify"
   },
   "dependencies": {
+    "gun": "^0.2020.1237",
     "svelte": "^3.48.0",
     "svelte-routing": "^1.6.0"
   }
