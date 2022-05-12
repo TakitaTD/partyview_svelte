@@ -1,8 +1,21 @@
 <script>
-    import { user, signUp, logIn } from "../user";
+    import { user } from "../user";
 
     let username;
     let password;
+
+    function logIn() {
+        user.auth(username, password, ({ err }) => err && console.error(err));
+    }
+    function signUp() {
+        user.create(username, password, ({ err }) => {
+            if (err) {
+                console.error(err);
+            } else {
+                logIn();
+            }
+        });
+    }
 </script>
 
 <div class="Login">
@@ -16,8 +29,8 @@
         minlength="8"
         maxlength="256"
     />
-    <button on:click={signUp(username, password)}>Sign Up</button>
-    <button on:click={logIn(username, password)}>Log In</button>
+    <button on:click={signUp}>Sign Up</button>
+    <button on:click={logIn}>Log In</button>
 </div>
 
 <style lang="scss" module>

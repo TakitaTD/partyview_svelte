@@ -1,30 +1,23 @@
+
 import GUN from 'gun';
-import 'gun/sea'
-import 'gun/axe'
+import 'gun/sea';
+import 'gun/axe';
 import { writable } from 'svelte/store';
 
-const db = GUN();
+// Database
+export const db = GUN();
 
-export const user = db.user().recall({ sessionStorage: true });
+// Gun User
+export const user = db.user().recall({sessionStorage: true});
 
-export const username = writable("");
+// Current User's username
+export const username = writable('');
 
-user.get('alias').on(v => username.set(v));
+user.get('alias').on(v => username.set(v))
 
-db.on('auth', () => {
-    (async () => {
-        const alias = await user.get('alias');
-        username.set(alias);
-    })();
-})
+db.on('auth', async(event) => {
+    const alias = await user.get('alias'); // username string
+    username.set(alias);
 
-export function signOut() {
-    user.leave();
-    username.set("");
-}
-export function logIn(username, password) {
-    user.auth(username, password, err => console.log("Something fucked up lol", err));
-}
-export function signUp(username, password) {
-    user.create(username, password, ({ err }) => err ? console.log("Something fucked up lol", err) : login(username, password));
-}
+    console.log(`signed in as ${alias}`);
+});
