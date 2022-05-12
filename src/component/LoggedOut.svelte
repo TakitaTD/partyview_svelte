@@ -1,5 +1,5 @@
 <script>
-    import { user } from "../user";
+    import { user, signUp, logIn } from "../user";
 
     let username;
     let password;
@@ -16,7 +16,8 @@
         minlength="8"
         maxlength="256"
     />
-    <button> Log In / Sign Up </button>
+    <button on:click={signUp(username, password)}>Sign Up</button>
+    <button on:click={logIn(username, password)}>Log In</button>
 </div>
 
 <style lang="scss" module>
@@ -53,9 +54,8 @@
         button {
             display: flex;
             text-align: center;
-            padding-block: 0.5rem;
-            padding-inline: 2rem;
-            min-width: 5rem;
+            min-width: 10rem;
+            margin-top: 1rem;
             min-height: 3rem;
             justify-content: center;
             align-items: center;
