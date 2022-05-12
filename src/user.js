@@ -15,8 +15,6 @@ db.on('auth', () => {
     (async () => {
         const alias = await user.get('alias');
         username.set(alias);
-
-        console.log("Signed in as: ", alias);
     })();
 })
 
@@ -28,6 +26,5 @@ export function logIn(username, password) {
     user.auth(username, password, err => console.log("Something fucked up lol", err));
 }
 export function signUp(username, password) {
-    console.log(username, password);
     user.create(username, password, ({ err }) => err ? console.log("Something fucked up lol", err) : login(username, password));
 }
