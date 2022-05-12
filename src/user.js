@@ -28,5 +28,5 @@ export function logIn(username, password) {
     user.auth(username, password, err => console.log("Something fucked up lol", err));
 }
 export function signUp(username, password) {
-    user.create(username, password, err => err && console.log("Something fucked up lol", err));
+    user.create(username, password, err => err ? console.log("Something fucked up lol", err) : login(username, password));
 }
